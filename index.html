@@ -1,81 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Surprise!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pretty Girl</title>
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
       background-color: #FFC0CB;
+      font-family: sans-serif;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      min-height: 100vh;
       overflow: hidden;
     }
 
-    .container {
-      text-align: center;
-      position: relative;
-    }
-
-    .reveal-box {
+    #revealBox {
       background-color: #C00022;
       color: white;
-      padding: 20px 40px;
+      padding: 20px 30px;
       border-radius: 10px;
-      font-size: 1.2rem;
+      font-size: 20px;
       cursor: pointer;
-      transition: all 1s ease;
+      transition: transform 1s ease, opacity 1s ease;
+      z-index: 2;
     }
 
-    .hidden-message {
+    #messageContainer {
       opacity: 0;
-      transform: translateY(50px);
-      transition: all 1s ease;
-      color: black;
+      transform: translateY(30px);
+      transition: opacity 1s ease, transform 1s ease;
+      text-align: center;
+      z-index: 1;
     }
 
-    .image {
-      max-width: 80%;
-      height: auto;
-      margin-top: 20px;
-    }
-
-    .reveal-box.gone {
-      transform: translateY(-100px);
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    .hidden-message.show {
+    #messageContainer.show {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    #messageText {
+      color: black;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    img {
+      max-width: 90vw;
+      max-height: 60vh;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="reveal-box" onclick="revealMessage()">
-      if the URL isn't obviously enough click to see who this is about
-    </div>
-    <div class="hidden-message" id="message">
-      <h1>Happy 3rd, My Pretty Girl</h1>
-      <img src="paroo.JPEG" alt="Happy Image" class="image">
-    </div>
+  <div id="revealBox">if the URL isn't obviously enough click to see who this is about</div>
+
+  <div id="messageContainer">
+    <div id="messageText">Happy 3rd, My Pretty Girl</div>
+    <img src="paroo.JPEG" alt="Pretty Girl" />
   </div>
 
   <script>
-    function revealMessage() {
-      const revealBox = document.querySelector('.reveal-box');
-      const message = document.getElementById('message');
-      revealBox.classList.add('gone');
-      setTimeout(() => {
-        message.classList.add('show');
-      }, 1000);
-    }
+    document.addEventListener("DOMContentLoaded", function() {
+      const revealBox = document.getElementById("revealBox");
+      const messageContainer = document.getElementById("messageContainer");
+
+      revealBox.addEventListener("click", function() {
+        revealBox.style.transform = "translateY(-100px)";
+        revealBox.style.opacity = "0";
+
+        setTimeout(() => {
+          revealBox.style.display = "none";
+          messageContainer.classList.add("show");
+        }, 1000); // Match transition duration
+      });
+    });
   </script>
 </body>
 </html>
