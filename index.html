@@ -1,78 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reveal Image</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Surprise!</title>
   <style>
     body {
       margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #FFC0CB;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      background: #f0f0f0;
-      animation: fadeIn 2s ease-in;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
 
-    h1 {
-      margin-bottom: 20px;
-      animation: slideDown 1.5s ease-out;
+    .container {
       text-align: center;
+      position: relative;
     }
 
-    button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      cursor: pointer;
-      border: none;
-      border-radius: 5px;
-      background-color: #007BFF;
+    .reveal-box {
+      background-color: #C00022;
       color: white;
-      transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-      background-color: #0056b3;
-    }
-
-    #imageContainer {
-      margin-top: 30px;
-      display: none;
-      animation: fadeIn 1.5s ease-in;
-    }
-
-    img {
-      max-width: 90vw;
-      max-height: 80vh;
+      padding: 20px 40px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: all 1s ease;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+    .hidden-message {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 1s ease;
+      color: black;
     }
 
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    .image {
+      max-width: 80%;
+      height: auto;
+      margin-top: 20px;
+    }
+
+    .reveal-box.gone {
+      transform: translateY(-100px);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hidden-message.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
 <body>
-  <h1>If the URL isn't obviously enough,<br>click to see who this is about</h1>
-  <button onclick="showImage()">Click to Reveal</button>
-  <div id="imageContainer">
-    <img src="paroo.JPEG" alt="Revealed Image" />
+  <div class="container">
+    <div class="reveal-box" onclick="revealMessage()">
+      if the URL isn't obviously enough click to see who this is about
+    </div>
+    <div class="hidden-message" id="message">
+      <h1>Happy 3rd, My Pretty Girl</h1>
+      <img src="paroo.JPEG" alt="Happy Image" class="image">
+    </div>
   </div>
 
   <script>
-    function showImage() {
-      document.getElementById("imageContainer").style.display = "block";
+    function revealMessage() {
+      const revealBox = document.querySelector('.reveal-box');
+      const message = document.getElementById('message');
+      revealBox.classList.add('gone');
+      setTimeout(() => {
+        message.classList.add('show');
+      }, 1000);
     }
   </script>
 </body>
