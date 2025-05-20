@@ -48,7 +48,7 @@
       max-width: 90vw;
       max-height: 80vh;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
     }
 
     @keyframes fadeIn {
@@ -63,5 +63,16 @@
   </style>
 </head>
 <body>
-  <h1>Welcome to My Site</h1>
-  <button onclick="showImage()">Click to Reveal</
+  <h1>If the url wasn't obvious click to see who this is about</h1>
+  <button onclick="showImage()">Click to Reveal</button>
+  <div id="imageContainer">
+    <img src="paroo.JPEG" alt="Revealed Image" />
+  </div>
+
+  <script>
+    function showImage() {
+      document.getElementById("imageContainer").style.display = "block";
+    }
+  </script>
+</body>
+</html>
