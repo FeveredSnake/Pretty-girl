@@ -2,65 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reveal Page</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reveal Image</title>
   <style>
     body {
+      margin: 0;
+      padding: 0;
       font-family: sans-serif;
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background: #fefefe;
-      text-align: center;
+      background: #f0f0f0;
+      animation: fadeIn 2s ease-in;
     }
 
     h1 {
-      font-size: 1.4rem;
       margin-bottom: 20px;
-      padding: 0 10px;
+      animation: slideDown 1.5s ease-out;
+      text-align: center;
     }
 
     button {
       padding: 10px 20px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: white;
+      font-size: 1rem;
+      cursor: pointer;
       border: none;
       border-radius: 5px;
-      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
     }
 
     #imageContainer {
-      display: none;
       margin-top: 30px;
+      display: none;
+      animation: fadeIn 1.5s ease-in;
     }
 
-    #imageContainer img {
+    img {
       max-width: 90vw;
       max-height: 80vh;
-      border: 2px solid #333;
-      border-radius: 8px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideDown {
+      from { transform: translateY(-50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
-
-  <h1>If the URL isn't obviously enough, click to see who this is about</h1>
+  <h1>If the URL isn't obviously enough,<br>click to see who this is about</h1>
   <button onclick="showImage()">Click to Reveal</button>
-
   <div id="imageContainer">
-    <img src="paroo.JPEG" alt="Paroo Image">
+    <img src="paroo.JPEG" alt="Revealed Image" />
   </div>
 
   <script>
     function showImage() {
-      document.getElementById('imageContainer').style.display = 'block';
+      document.getElementById("imageContainer").style.display = "block";
     }
   </script>
-
 </body>
 </html>
-
